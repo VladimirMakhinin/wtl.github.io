@@ -1,26 +1,21 @@
 
 <html>
-<!-- <META HTTP-EQUIV="Content-type" CONTENT="application/json;"> -->
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     
-    <!-- <form id="leadForm" action=https://epamdev-seekinsuranceservices.cs165.force.com/services/apexrest/SeekWTL method="POST"> -->
     <form id="leadForm">
-    
-    <!-- <input type=hidden name="oid" value="00D6s0000008kSr"> -->
-    <!-- <input type=hidden name="retURL" value="http://google.com"> -->
-    
-    
+    <!-- <input type=hidden name="retURL" value="https://www.seekmedicare.com/s/thank-you"> -->
+
     <label for="first_name">First Name</label><input maxlength="40" name="first_name" size="20" type="text" /><br>
     <label for="last_name">Last Name</label><input maxlength="80" name="last_name" size="20" type="text" /><br>
     <label for="email">Email</label><input maxlength="80" name="email" size="20" type="text" /><br>
     <label for="zip">Zip</label><input maxlength="20" name="zip" size="20" type="text" /><br>
     
-    <input type=hidden maxlength="255" name="utm_campaign" size="20" type="text" /><br>
+    <!-- <input type=hidden maxlength="255" name="utm_campaign" size="20" type="text" /><br>
     <input type=hidden maxlength="255" name="utm_content" size="20" type="text" /><br>
     <input type=hidden maxlength="255" name="utm_medium" size="20" type="text" /><br>
-    <input type=hidden maxlength="255" name="utm_source" size="20" type="text" /><br>
+    <input type=hidden maxlength="255" name="utm_source" size="20" type="text" /><br> -->
 </form>
 <button onclick="submitform()">Submit</button>
 </html>
@@ -34,6 +29,8 @@
             success: function(){},
             dataType: "json",
             contentType : "application/json"
+        }).done(function() {
+            window.location('https://www.seekmedicare.com/s/thank-you');
         });
     }
 

@@ -29,8 +29,9 @@
             success: function(){},
             dataType: "json",
             contentType : "application/json"
-        }).done(function() {
-            window.location('https://www.seekmedicare.com/s/thank-you');
+        }).always(function(data) {
+            console.log(data);
+            document.location.replace('https://www.seekmedicare.com/s/thank-you');
         });
     }
 

@@ -56,13 +56,11 @@ function prepareRequestData() {
     var formData = getFormValues();
     var urlParams = getUrlParams();
     if (urlParams) {
-        console.log('urlParams.utm_campaign: ' + urlParams.utm_campaign);
         formData.utm_campaign = urlParams.utm_campaign ? urlParams.utm_campaign : '';
         formData.utm_content = urlParams.utm_content ? urlParams.utm_content : '';
         formData.utm_medium = urlParams.utm_medium ? urlParams.utm_medium : '';
         formData.utm_source = urlParams.utm_source ? urlParams.utm_source : '';
     }
-    console.log(formData);
     return formData;
 }
 
@@ -71,9 +69,9 @@ function getFormValues() {
     var obj ={};
     for(var i = 0 ; i < elements.length ; i++){
         var item = elements.item(i);
+        if (!item.name) continue;
         obj[item.name] = item.value;
     }
-    console.log(obj);
     return obj;
 }
 
@@ -82,6 +80,5 @@ function getUrlParams() {
     window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
         params[key] = value;
     });
-    console.log(params);
     return params;
 }

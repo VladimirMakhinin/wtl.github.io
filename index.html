@@ -1,29 +1,29 @@
-
 <html>
-    <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="js/main.js"></script>
-        <!-- <link rel="stylesheet" href="css/leadform.css"> -->
-    </head>
 
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+</head>
+
+<Body>
     <div class="lead_container_form">
-        <form id="leadForm">
-    
+        <form id="leadForm" action="javascript:void(0);" onsubmit="submitform();return false;">
+
             <div class="form__input__container__wrapper">
                 <div class="form__input__container">
-                    <input type="text" name="first_name" placeholder="FIRST NAME" minlength="2" maxlength="32">
+                    <input type="text" name="first_name" required placeholder="FIRST NAME" minlength="1" maxlength="80">
                     <div class="error" data-id="error"></div>
                 </div>
                 <div class="form__input__container">
-                    <input type="text" name="last_name" data-id="last_name" placeholder="LAST NAME"
-                        minlength="2" maxlength="32">
+                    <input type="text" name="last_name" required data-id="last_name" placeholder="LAST NAME"
+                        minlength="1" maxlength="80">
                     <div class="error" data-id="lastNameError"></div>
                 </div>
             </div>
-    
+
             <div class="form__input__container__wrapper">
                 <div class="form__input__container">
-                    <input type="tel" name="phone" placeholder="PHONE NUMBER" title="10-digit number">
+                    <input type="tel" name="phone" required placeholder="PHONE NUMBER" title="10-digit number">
                     <div class="error" data-id="phoneNumberError"></div>
                 </div>
                 <div class="form__input__container">
@@ -31,20 +31,18 @@
                         minlength="5" maxlength="5">
                 </div>
             </div>
-    
-    
-            <!-- EMAIL AND SELECT INPUT -->
+
             <div class="form__input__container__wrapper__column">
                 <input type="email" name="email" placeholder="EMAIL ADDRESS"
                     pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
             </div>
-    
+
+            <button class="lead_container__button" type="submit" id="contact__button" onclick="submitCheck(event);">
+                Submit
+            </button>
         </form>
-        <button class="lead_container__button" type="submit" id="contact__button"
-            onclick="submitCheck(event);">
-            Submit
-        </button>
+        <h2 class="response-error"></h2>
     </div>
-    
-    
+</Body>
+
 </html>

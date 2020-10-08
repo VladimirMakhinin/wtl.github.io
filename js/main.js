@@ -1,28 +1,25 @@
 function submitCheck(e) {
-    // var contactForm;
-    var firstName = $('input[name=first_name]').val();
-    var lastName = $('input[name=last_name]').val();
-    var zipCode = $('input[name=zip]').val();
-    var phone = $('input[name=phone]').val();
-    var email = $('input[name=email]').val();
-
+    $('.response-error').text('');
     let messageName = [];
     let messageLast = [];
     let messagePhone = [];
+    var firstName = $('input[name=first_name]').val();
+    var lastName = $('input[name=last_name]').val();
+    var phone = $('input[name=phone]').val();
 
     if (firstName === "" || firstName === null) {
         messageName.push("* Required");
-    } else if (firstName.length < 2 || firstName === null) {
+    } else if (firstName.length < 1 || firstName === null) {
         messageName.push("* Required");
     } 
 
     if (lastName === "" || lastName === null) {
         messageLast.push("* Required");
-    } else if (lastName.length < 2 || lastName === null) {
+    } else if (lastName.length < 1 || lastName === null) {
         messageLast.push("* Required");
     } 
 
-    if (phone.length < 14 || phone === null) {
+    if (phone.length < 10 || phone === null) {
         messagePhone.push("* Required");
     }
 
@@ -31,12 +28,10 @@ function submitCheck(e) {
         messageLast.length ||
         messagePhone.length > 0
     ) {
-        e.preventDefault();
+        // e.preventDefault();
         $('[data-id=error]').text(messageName);
         $('[data-id=lastNameError]').text(messageLast);
         $('[data-id=phoneNumberError]').text(messagePhone);
-    } else {
-        submitform();
     }
 }
 
@@ -48,11 +43,12 @@ function submitform(){
         success: function(){},
         dataType: "json",
         contentType : "application/json"
-    }).always(function(data) {
+    }).done(function(data) {
         console.log(data);
-        // document.location.replace('https://www.seekmedicare.com/s/thank-you');
-        // var message = "We're sorry, an internal error occurred. Please try to resubmit or call {0} for help.";
         window.open('https://www.seekmedicare.com/s/thank-you', "_self");
+    }).fail(function(data) {
+        console.log(data);
+        $('.response-error').text("We\'re sorry, an internal error occurred. Please try to resubmit or call 123-456-7890 for help.");
     });
 }
 
@@ -89,32 +85,3 @@ function getUrlParams() {
     console.log(params);
     return params;
 }
-
-// function submitForm() {
-//     // var phoneMask = IMask($('input[name=phone]').val()), {
-//     //     mask: "(000) 000-0000"
-//     // });
-//     createLeadStaging({
-//         firstName: this.firstName.value,
-//         lastName: this.lastName.value,
-//         zipCode: this.zipCode.value,
-//         phone: phoneMask.unmaskedValue,
-//         email: this.email.value,
-//         leadSource: 'Website'
-//     })
-//     .then(() => {
-//         window.open(window.location.origin + basePath + "/thank-you", "_self");
-//     })
-//     .catch((error) => {
-//         const event = new ShowToastEvent({
-//             mode: "sticky",
-//             variant: "error",
-//             message: "We're sorry, an internal error occurred. Please try to resubmit or call {0} for help.",
-//             messageData: [{
-//                label: "1-844-955-3690",
-//                url: "tel:+18449553690"
-//             }]
-//         });
-//         this.dispatchEvent(event);
-//     });
-// }

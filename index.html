@@ -2,71 +2,49 @@
 <html>
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="js/main.js"></script>
+        <!-- <link rel="stylesheet" href="css/leadform.css"> -->
     </head>
-    
-    <form id="leadForm">
-    <!-- <input type=hidden name="retURL" value="https://www.seekmedicare.com/s/thank-you"> -->
 
-    <label for="first_name">First Name</label><input maxlength="40" name="first_name" size="20" type="text" /><br>
-    <label for="last_name">Last Name</label><input maxlength="80" name="last_name" size="20" type="text" /><br>
-    <label for="email">Email</label><input maxlength="80" name="email" size="20" type="text" /><br>
-    <label for="zip">Zip</label><input maxlength="20" name="zip" size="20" type="text" /><br>
+    <div class="lead_container_form">
+        <form id="leadForm">
     
-    <!-- <input type=hidden maxlength="255" name="utm_campaign" size="20" type="text" /><br>
-    <input type=hidden maxlength="255" name="utm_content" size="20" type="text" /><br>
-    <input type=hidden maxlength="255" name="utm_medium" size="20" type="text" /><br>
-    <input type=hidden maxlength="255" name="utm_source" size="20" type="text" /><br> -->
-</form>
-<button onclick="submitform()">Submit</button>
+            <div class="form__input__container__wrapper">
+                <div class="form__input__container">
+                    <input type="text" name="first_name" placeholder="FIRST NAME" minlength="2" maxlength="32">
+                    <div class="error" data-id="error"></div>
+                </div>
+                <div class="form__input__container">
+                    <input type="text" name="last_name" data-id="last_name" placeholder="LAST NAME"
+                        minlength="2" maxlength="32">
+                    <div class="error" data-id="lastNameError"></div>
+                </div>
+            </div>
+    
+            <div class="form__input__container__wrapper">
+                <div class="form__input__container">
+                    <input type="tel" name="phone" placeholder="PHONE NUMBER" title="10-digit number">
+                    <div class="error" data-id="phoneNumberError"></div>
+                </div>
+                <div class="form__input__container">
+                    <input type="text" name="zip" placeholder="ZIP CODE (5 digits)" pattern="(\d{5}([\-]\d{4})?)"
+                        minlength="5" maxlength="5">
+                </div>
+            </div>
+    
+    
+            <!-- EMAIL AND SELECT INPUT -->
+            <div class="form__input__container__wrapper__column">
+                <input type="email" name="email" placeholder="EMAIL ADDRESS"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+            </div>
+    
+        </form>
+        <button class="lead_container__button" type="submit" id="contact__button"
+            onclick="submitCheck(event);">
+            Submit
+        </button>
+    </div>
+    
+    
 </html>
-
-<script>
-    function submitform(){
-        $.ajax({
-            type: "POST",
-            url: "https://epamdev-seekinsuranceservices.cs165.force.com/services/apexrest/SeekWTL",
-            data: JSON.stringify(prepareRequestData()),
-            success: function(){},
-            dataType: "json",
-            contentType : "application/json"
-        }).always(function(data) {
-            console.log(data);
-            document.location.replace('https://www.seekmedicare.com/s/thank-you');
-        });
-    }
-
-    function prepareRequestData() {
-        var formData = getFormValues();
-        var urlParams = getUrlParams();
-        if (urlParams) {
-            console.log('urlParams.utm_campaign: ' + urlParams.utm_campaign);
-            formData.utm_campaign = urlParams.utm_campaign ? urlParams.utm_campaign : '';
-            formData.utm_content = urlParams.utm_content ? urlParams.utm_content : '';
-            formData.utm_medium = urlParams.utm_medium ? urlParams.utm_medium : '';
-            formData.utm_source = urlParams.utm_source ? urlParams.utm_source : '';
-        }
-        console.log(formData);
-        return formData;
-    }
-
-    function getFormValues() {
-        var elements = document.getElementById("leadForm").elements;
-        var obj ={};
-        for(var i = 0 ; i < elements.length ; i++){
-            var item = elements.item(i);
-            obj[item.name] = item.value;
-        }
-        console.log(obj);
-        return obj;
-    }
-
-    function getUrlParams() {
-        var params = {};
-        window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-            params[key] = value;
-        });
-        console.log(params);
-        return params;
-    }
-
-</script>

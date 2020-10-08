@@ -36,6 +36,7 @@ function submitCheck(e) {
 }
 
 function submitform(){
+    $('#contact__button').prop('disabled', true);
     $.ajax({
         type: "POST",
         url: "https://epamdev-seekinsuranceservices.cs165.force.com/services/apexrest/SeekWTL",
@@ -47,7 +48,7 @@ function submitform(){
         console.log(data);
         window.open('https://www.seekmedicare.com/s/thank-you', "_self");
     }).fail(function(data) {
-        console.log(data);
+        $('#contact__button').prop('disabled', false);
         $('.response-error').text("We\'re sorry, an internal error occurred. Please try to resubmit or call 123-456-7890 for help.");
     });
 }

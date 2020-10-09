@@ -70,7 +70,7 @@ function getFormValues() {
     var obj ={};
     for(var i = 0 ; i < elements.length ; i++){
         var item = elements.item(i);
-        // if (!item.name) continue;
+        if (!item.name) continue;
         obj[item.name] = item.value;
     }
     return obj;

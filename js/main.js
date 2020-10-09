@@ -41,6 +41,7 @@ function submitform(){
         type: "POST",
         url: "https://epamdev-seekinsuranceservices.cs165.force.com/services/apexrest/SeekWTL",
         dataType: "json",
+        contentType : "application/json",
         data: JSON.stringify(prepareRequestData()),
         success: function(data){
             console.log(data);

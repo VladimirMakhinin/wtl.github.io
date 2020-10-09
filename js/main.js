@@ -38,6 +38,7 @@ function submitCheck(e) {
 function submitform(){
     $('#contact__button').prop('disabled', true);
     $.ajax({
+        traditional: true,
         type: "POST",
         url: "https://epamdev-seekinsuranceservices.cs165.force.com/services/apexrest/SeekWTL",
         data: JSON.stringify(prepareRequestData()),

@@ -39,7 +39,7 @@ function submitform(){
     $('#contact__button').prop('disabled', true);
     $.ajax({
         type: "POST",
-        url:  $('#WTL_URL').val(),
+        url: "https://seekinsuranceservices--epamdev.my.salesforce.com/services/apexrest/SeekWTL",
         dataType: "json",
         contentType : "application/json",
         data: JSON.stringify(prepareRequestData()),

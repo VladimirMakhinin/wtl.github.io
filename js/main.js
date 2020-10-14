@@ -79,7 +79,7 @@ function getFormValues() {
 function getUrlParams() {
     var params = {};
     window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-        params[key] = decodeURI(value);
+        params[key] = decodeURI(value).replaceAll('+', ' ');
     });
     return params;
 }

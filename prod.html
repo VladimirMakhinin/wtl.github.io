@@ -1,0 +1,49 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+    <input type="hidden" Id="WTL_URL" value="http://seekmedicare.com/services/apexrest/SeekWTL"/>
+</head>
+
+<Body>
+    <div class="lead_container_form">
+        <form id="leadForm" action="javascript:void(0);" onsubmit="submitform();return false;">
+
+            <div class="form__input__container__wrapper">
+                <div class="form__input__container">
+                    <input type="text" name="first_name" required placeholder="FIRST NAME" minlength="1" maxlength="80">
+                    <div class="error" data-id="error"></div>
+                </div>
+                <div class="form__input__container">
+                    <input type="text" name="last_name" required data-id="last_name" placeholder="LAST NAME"
+                        minlength="1" maxlength="80">
+                    <div class="error" data-id="lastNameError"></div>
+                </div>
+            </div>
+
+            <div class="form__input__container__wrapper">
+                <div class="form__input__container">
+                    <input type="tel" name="phone" required placeholder="PHONE NUMBER" title="10-digit number"
+                    pattern="(\d{10})" maxlength="10">
+                    <div class="error" data-id="phoneNumberError"></div>
+                </div>
+                <div class="form__input__container">
+                    <input type="text" name="zip" placeholder="ZIP CODE (5 digits)" pattern="(\d{5}([\-]\d{4})?)"
+                        minlength="5" maxlength="10" title="XXXXX OR XXXXX-XXXX">
+                </div>
+            </div>
+
+            <div class="form__input__container__wrapper__column">
+                <input type="email" name="email" placeholder="EMAIL ADDRESS"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+            </div>
+
+            <button class="lead_container__button" type="submit" id="contact__button" onclick="submitCheck(event);">
+                Submit
+            </button>
+        </form>
+        <h2 class="response-error"></h2>
+    </div>
+</Body>
+
+</html>
